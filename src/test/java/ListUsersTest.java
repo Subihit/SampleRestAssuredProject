@@ -42,7 +42,7 @@ public class ListUsersTest {
     public void addUsers() {
         String testNameParam = "test Name", testJobParam = "test Job";
         String payloadTemplate = getPayLoad("src/Requests/addUser.json");
-        String payload = payloadTemplate.replace("TEST", testNameParam);
+        String payload = payloadTemplate.replace("NAME_PARAM", testNameParam).replace("JOB_PARAM", testJobParam);
 
         String endpoint = "/api/users";
         String URI = baseURI + endpoint;
@@ -52,10 +52,11 @@ public class ListUsersTest {
                 .and().body(payload).
                         when().post(endpoint);
 
-        response.then().log().all();
+        System.out.println("Response body : ");
+        response.then().log().body();
 
-        //Assert.assertEquals(response.getBody().jsonPath().get(""));
-
+        verifyName(response, testNameParam);
+        verifyJob(response, testJobParam);
 
     }
 
@@ -74,6 +75,16 @@ public class ListUsersTest {
             System.err.println(ex.getMessage());
             return "";
         }
+    }
+
+    public void verifyName(Response response, String expectedName) {
+        System.out.println("Verify Name");
+        Assert.assertEquals(response.getBody().jsonPath().get("name"), expectedName);
+    }
+
+    public void verifyJob(Response response, String expectedName) {
+        System.out.println("Verify job");
+        Assert.assertEquals(response.getBody().jsonPath().get("job"), expectedName);
     }
 
 }
