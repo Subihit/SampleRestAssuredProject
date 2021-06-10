@@ -50,7 +50,7 @@ public class ListUsersTest {
 
         Response response = given().header("content-type", "application/json")
                 .and().body(payload).
-                        when().post(endpoint);
+                        when().post(URI);
 
         System.out.println("Response body : ");
         response.then().log().body();
