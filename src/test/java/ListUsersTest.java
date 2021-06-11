@@ -41,7 +41,7 @@ public class ListUsersTest {
     @Test
     public void addUsers() {
         String testNameParam = "test Name", testJobParam = "test Job";
-        String payloadTemplate = getPayLoad("src/Requests/addUser.json");
+        String payloadTemplate = getPayLoad("src/test/resources/addUser.json");
         String payload = payloadTemplate.replace("NAME_PARAM", testNameParam).replace("JOB_PARAM", testJobParam);
 
         String endpoint = "/api/users";
