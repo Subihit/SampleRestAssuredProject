@@ -14,7 +14,7 @@ public class Payload {
         JSONParser parser = new JSONParser();
 
         try {
-            Object obj = parser.parse(new FileReader("src/Requests/" + fileName));
+            Object obj = parser.parse(new FileReader("src/main/resources/requests/" + fileName));
             JSONObject jsonObject = (JSONObject) obj;
 
             return jsonObject.toJSONString();
